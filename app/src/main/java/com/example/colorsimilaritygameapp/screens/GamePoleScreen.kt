@@ -1,6 +1,7 @@
 package com.example.colorsimilaritygameapp.screens
 
 
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
@@ -10,11 +11,15 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import com.example.colorsimilaritygameapp.Components.AppButton
 import com.example.colorsimilaritygameapp.Components.ButtonSize
+import com.example.colorsimilaritygameapp.Components.ChooseColor
 import com.example.colorsimilaritygameapp.Components.Timer
 import com.example.colorsimilaritygameapp.ui.theme.Gray
 import com.example.colorsimilaritygameapp.utils.generateRandomColor
+import io.mhssn.colorpicker.ColorPicker
+import io.mhssn.colorpicker.ColorPickerType
 
 @Composable
 fun GameScreen(){
@@ -32,7 +37,11 @@ fun GameScreen(){
                 onClick = { backgroundColor = generateRandomColor() },
                 size = ButtonSize.Default
             )
-            Timer {  }
+
+            ChooseColor()
+
+
+
         }
     }
 

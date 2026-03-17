@@ -30,7 +30,7 @@ fun AppButton(
 
     androidx.compose.material3.Button(
         onClick = onClick,
-        modifier = Modifier.fillMaxWidth(),
+//        modifier = Modifier.fillMaxWidth(),
         colors = ButtonDefaults.buttonColors(Color.Black),
         elevation = ButtonDefaults.buttonElevation(6.dp),
         shape = RoundedCornerShape(24.dp)
