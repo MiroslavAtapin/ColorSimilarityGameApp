@@ -4,8 +4,8 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import com.example.colorsimilaritygameapp.screens.GameScreen
 import com.example.colorsimilaritygameapp.ui.theme.ColorSimilarityGameAppTheme
-import com.example.colorsimilaritygameapp.Screens.HomeScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -14,7 +14,8 @@ class MainActivity : ComponentActivity() {
         setContent {
             ColorSimilarityGameAppTheme() {
 
-                HomeScreen()
+//                HomeScreen()
+                GameScreen()
 
             }
         }
