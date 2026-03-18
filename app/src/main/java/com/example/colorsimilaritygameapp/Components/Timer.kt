@@ -13,7 +13,7 @@ import kotlinx.coroutines.delay
 
 @Composable
 fun Timer(
-    totalTimeMillis: Long = 3_030L,
+    totalTimeMillis: Long = 2_030L,
     onFinish: () -> Unit = {}
 ) {
     var timeLeft by remember { mutableStateOf(totalTimeMillis) }

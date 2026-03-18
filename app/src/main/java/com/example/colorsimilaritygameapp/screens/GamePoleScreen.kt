@@ -1,5 +1,11 @@
 package com.example.colorsimilaritygameapp.screens
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.slideInVertically
+import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Scaffold
@@ -24,7 +30,7 @@ fun GameScreen() {
     var userColor by remember { mutableStateOf(Color.White) }
 
     LaunchedEffect(Unit) {
-        delay(500)
+        kotlinx.coroutines.delay(150)
         isTimerRunning = true
     }
 
@@ -33,8 +39,14 @@ fun GameScreen() {
             .fillMaxSize()
             .background(backgroundColor)
     ) {
-        // Таймер
-        if (isTimerRunning) {
+
+        AnimatedVisibility(
+            visible = isTimerRunning,
+            enter = fadeIn(animationSpec = tween(500)) +
+                    slideInVertically(initialOffsetY = { -it }, animationSpec = tween(500)),
+            exit = fadeOut(animationSpec = tween(300)) +
+                    slideOutVertically(targetOffsetY = { -it }, animationSpec = tween(300))
+        ) {
             Timer(
                 onFinish = {
                     isTimerRunning = false
@@ -44,8 +56,13 @@ fun GameScreen() {
             )
         }
 
-        // Выбор цвета
-        if (showColorPicker) {
+        AnimatedVisibility(
+            visible = showColorPicker,
+            enter = fadeIn(animationSpec = tween(500)) +
+                    slideInVertically(initialOffsetY = { it }, animationSpec = tween(500)),
+            exit = fadeOut(animationSpec = tween(300)) +
+                    slideOutVertically(targetOffsetY = { it }, animationSpec = tween(300))
+        ) {
             ChooseColor(
                 onColorSelected = { color ->
                     userColor = color
@@ -58,7 +75,6 @@ fun GameScreen() {
             )
         }
 
-        // Результат
         if (showResult) {
             Result(
                 originalColor = originalColor,
