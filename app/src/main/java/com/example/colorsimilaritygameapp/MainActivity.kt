@@ -4,7 +4,12 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.runtime.Composable
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.example.colorsimilaritygameapp.screens.GameScreen
+import com.example.colorsimilaritygameapp.screens.HomeScreen
 import com.example.colorsimilaritygameapp.ui.theme.ColorSimilarityGameAppTheme
 
 class MainActivity : ComponentActivity() {
@@ -14,10 +19,26 @@ class MainActivity : ComponentActivity() {
         setContent {
             ColorSimilarityGameAppTheme() {
 
-//                HomeScreen()
-                GameScreen()
+                AppNavigation()
 
             }
+        }
+    }
+}
+
+@Composable
+fun AppNavigation() {
+    val navController = rememberNavController()
+
+    NavHost(
+        navController = navController,
+        startDestination = "home"
+    ) {
+        composable("home") {
+            HomeScreen(navController)
+        }
+        composable("game") {
+            GameScreen()
         }
     }
 }

@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
@@ -16,6 +17,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
 import com.example.colorsimilaritygameapp.Components.AppButton
 import com.example.colorsimilaritygameapp.Components.ButtonSize
 import com.example.colorsimilaritygameapp.R
@@ -23,7 +25,7 @@ import com.example.colorsimilaritygameapp.ui.theme.PrimaryLight
 import com.example.colorsimilaritygameapp.ui.theme.Typography
 
 @Composable
-fun HomeScreen(){
+fun HomeScreen(navController: NavHostController) {
 
     Scaffold { paddingValues ->
         Column(
@@ -37,7 +39,10 @@ fun HomeScreen(){
             Spacer(modifier = Modifier.height(80.dp))
             AppButton(
                 "Играть",
-                onClick = {},
+                onClick = {
+                    navController.navigate("game")
+                },
+                modifier = Modifier.fillMaxWidth(),
                 size = ButtonSize.Default
             )
         }

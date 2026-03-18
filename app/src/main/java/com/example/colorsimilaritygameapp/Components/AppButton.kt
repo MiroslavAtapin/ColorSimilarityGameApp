@@ -15,13 +15,9 @@ import com.example.colorsimilaritygameapp.ui.theme.Typography
 fun AppButton(
     text: String,
     onClick: () -> Unit,
-    size: ButtonSize = ButtonSize.Default
+    modifier: Modifier = Modifier,
+    size: ButtonSize = ButtonSize.Default,
 ){
-
-//    val height = when(size){
-//        ButtonSize.Default-> 52.dp
-//        ButtonSize.Small -> 28.dp
-//    }
 
     val textStyle = when(size){
         ButtonSize.Default -> Typography.titleMedium
@@ -30,7 +26,7 @@ fun AppButton(
 
     androidx.compose.material3.Button(
         onClick = onClick,
-//        modifier = Modifier.fillMaxWidth(),
+        modifier = modifier,
         colors = ButtonDefaults.buttonColors(Color.Black),
         elevation = ButtonDefaults.buttonElevation(6.dp),
         shape = RoundedCornerShape(24.dp)

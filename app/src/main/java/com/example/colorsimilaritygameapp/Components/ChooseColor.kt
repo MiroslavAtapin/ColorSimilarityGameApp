@@ -4,6 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
@@ -25,36 +26,39 @@ import io.mhssn.colorpicker.ColorPickerType
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
-fun ChooseColor(){
+fun ChooseColor(
+    onColorSelected: (Color) -> Unit,
+    onColorChanging: (Color) -> Unit
+){
 
-    var selectedColor by remember { mutableStateOf(PrimaryLight) }
+    var selectedColor by remember { mutableStateOf(Color.White) }
 
-    AppCard {
-        Column(
-            horizontalAlignment = Alignment.CenterHorizontally
+    Box(
+        modifier = Modifier.fillMaxSize()
+    ){
+        AppCard(
+            modifier = Modifier.align(Alignment.BottomCenter)
         ) {
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                ColorPicker(
+                    type = ColorPickerType.Classic(showAlphaBar = false)
+                ) { color: Color ->
+                    selectedColor = color
+                    onColorChanging(color)
+                }
 
-            Box(
-                modifier = Modifier
-                    .size(100.dp)
-                    .clip(RoundedCornerShape(16.dp))
-                    .background(selectedColor),
-            )
+                Spacer(modifier = Modifier.height(24.dp))
 
-            Spacer(modifier = Modifier.height(24.dp))
-
-            ColorPicker(
-                type = ColorPickerType.Classic()
-            ) { color -> selectedColor = color }
-
-            Spacer(modifier = Modifier.height(24.dp))
-
-            AppButton(
-                text = "Выбрать",
-                onClick = {},
-                size = ButtonSize.Small
-            )
+                AppButton(
+                    text = "Выбрать",
+                    onClick = {
+                        onColorSelected(selectedColor)
+                    },
+                    size = ButtonSize.Small
+                )
+            }
         }
     }
-
 }
