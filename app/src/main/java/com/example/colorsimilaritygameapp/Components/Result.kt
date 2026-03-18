@@ -108,7 +108,8 @@ fun Result(
                     Spacer(modifier = Modifier.height(24.dp))
                     AppButton(
                         text = "Продолжить",
-                        onClick = onRestart
+                        onClick = onRestart,
+                        size = ButtonSize.Small,
                     )
                 }
             }
