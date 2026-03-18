@@ -74,7 +74,7 @@ fun Result(
         val rgbUser = "${(userColor.red * 255).toInt()}, ${(userColor.green * 255).toInt()}, ${(userColor.blue * 255).toInt()}"
 
         Row(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
             horizontalArrangement = Arrangement.SpaceAround
         ) {
             AppCard (
@@ -92,7 +92,7 @@ fun Result(
         AnimatedVisibility(
             visible = showCard,
             enter = fadeIn(animationSpec = tween(450)),
-            modifier = Modifier.align(Alignment.BottomCenter)
+            modifier = Modifier.align(Alignment.BottomCenter).padding(horizontal = 16.dp)
         ) {
             AppCard {
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
