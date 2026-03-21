@@ -13,15 +13,9 @@ import com.example.colorsimilaritygameapp.ui.theme.BackgroundLight
 
 @Composable
 fun AppCard(
-    size: CardSize = CardSize.Default,
     modifier: Modifier = Modifier,
     content: @Composable () -> Unit = {},
 ){
-
-    val padding = when(size){
-        CardSize.Default -> 32.dp
-        CardSize.Small -> 16.dp
-    }
 
     Card(
         modifier = modifier.padding(bottom = 40.dp, top = 70.dp),
@@ -32,16 +26,10 @@ fun AppCard(
     ) {
         Box(
             modifier = Modifier
-                .padding(horizontal = 32.dp, vertical = padding),
+                .padding(horizontal = 16.dp, vertical = 16.dp),
             contentAlignment = Alignment.Center)
         {
             content()
         }
     }
-
-}
-
-enum class CardSize {
-    Default,
-    Small
 }

@@ -74,42 +74,37 @@ fun Result(
         val rgbUser = "${(userColor.red * 255).toInt()}, ${(userColor.green * 255).toInt()}, ${(userColor.blue * 255).toInt()}"
 
         Row(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
             horizontalArrangement = Arrangement.SpaceAround
         ) {
-            AppCard (
-                size = CardSize.Small
-            ){
-                Text(rgbOriginal, style = Typography.bodyLarge)
+            AppCard (){
+                Text(rgbOriginal, style = Typography.titleMedium)
             }
-            AppCard (
-                size = CardSize.Small
-            ){
-                Text(rgbUser, style = Typography.bodyLarge)
+            AppCard (){
+                Text(rgbUser, style = Typography.titleMedium)
             }
         }
 
         AnimatedVisibility(
             visible = showCard,
             enter = fadeIn(animationSpec = tween(450)),
-            modifier = Modifier.align(Alignment.BottomCenter)
+            modifier = Modifier.align(Alignment.BottomCenter).padding(horizontal = 16.dp)
         ) {
             AppCard {
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
                     Text(
                         text = "$similarity%",
-                        style = Typography.displaySmall
+                        style = Typography.headlineLarge
                     )
                     Spacer(modifier = Modifier.height(24.dp))
                     Text(
                         text = resultText,
-                        style = Typography.bodyMedium
+                        style = Typography.bodyLarge
                     )
                     Spacer(modifier = Modifier.height(24.dp))
                     AppButton(
                         text = "Продолжить",
                         onClick = onRestart,
-                        size = ButtonSize.Small,
                     )
                 }
             }

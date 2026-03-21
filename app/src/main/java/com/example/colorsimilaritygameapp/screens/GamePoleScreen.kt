@@ -30,7 +30,7 @@ fun GameScreen() {
     var userColor by remember { mutableStateOf(Color.White) }
 
     LaunchedEffect(Unit) {
-        kotlinx.coroutines.delay(150)
+        delay(150)
         isTimerRunning = true
     }
 
@@ -48,9 +48,9 @@ fun GameScreen() {
                     slideOutVertically(targetOffsetY = { -it }, animationSpec = tween(300))
         ) {
             Timer(
+                backgroundColor = backgroundColor,
                 onFinish = {
                     isTimerRunning = false
-                    backgroundColor = Gray
                     showColorPicker = true
                 }
             )

@@ -16,13 +16,7 @@ fun AppButton(
     text: String,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
-    size: ButtonSize = ButtonSize.Default,
 ){
-
-    val textStyle = when(size){
-        ButtonSize.Default -> Typography.titleMedium
-        ButtonSize.Small -> Typography.titleSmall
-    }
 
     androidx.compose.material3.Button(
         onClick = onClick,
@@ -35,14 +29,9 @@ fun AppButton(
         Text(
             text,
             modifier = Modifier.padding(32.dp, 10.dp),
-            style = textStyle,
+            style = Typography.titleMedium,
             color = Color.White,
         )
     }
 
-}
-
-enum class ButtonSize {
-    Default,
-    Small
 }
