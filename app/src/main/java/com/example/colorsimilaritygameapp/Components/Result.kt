@@ -91,7 +91,10 @@ fun Result(
             modifier = Modifier.align(Alignment.BottomCenter).padding(horizontal = 16.dp)
         ) {
             AppCard {
-                Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                Column(
+                    modifier = Modifier.width(IntrinsicSize.Max),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
                     Text(
                         text = "$similarity%",
                         style = Typography.headlineLarge
@@ -105,6 +108,7 @@ fun Result(
                     AppButton(
                         text = "Продолжить",
                         onClick = onRestart,
+                        modifier = Modifier.fillMaxWidth()
                     )
                 }
             }

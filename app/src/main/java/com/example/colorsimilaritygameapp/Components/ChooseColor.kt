@@ -3,12 +3,15 @@ package com.example.colorsimilaritygameapp.Components
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -40,6 +43,7 @@ fun ChooseColor(
             modifier = Modifier.align(Alignment.BottomCenter)
         ) {
             Column(
+                modifier = Modifier.width(IntrinsicSize.Max),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 ColorPicker(
@@ -56,6 +60,7 @@ fun ChooseColor(
                     onClick = {
                         onColorSelected(selectedColor)
                     },
+                    modifier = Modifier.fillMaxWidth()
                 )
             }
         }
