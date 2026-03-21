@@ -28,7 +28,6 @@ fun Timer(
 
     var timeLeft by remember { mutableStateOf(totalTimeMillis) }
 
-    // MediaPlayer для тиканья
     val tickPlayer = remember {
         MediaPlayer.create(context, R.raw.tick).apply {
             setOnCompletionListener { mp ->
