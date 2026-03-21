@@ -48,9 +48,9 @@ fun GameScreen() {
                     slideOutVertically(targetOffsetY = { -it }, animationSpec = tween(300))
         ) {
             Timer(
+                backgroundColor = backgroundColor,
                 onFinish = {
                     isTimerRunning = false
-                    backgroundColor = Gray
                     showColorPicker = true
                 }
             )

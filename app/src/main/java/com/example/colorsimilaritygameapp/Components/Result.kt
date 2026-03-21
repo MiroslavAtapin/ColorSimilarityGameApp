@@ -77,15 +77,11 @@ fun Result(
             modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
             horizontalArrangement = Arrangement.SpaceAround
         ) {
-            AppCard (
-                size = CardSize.Small
-            ){
-                Text(rgbOriginal, style = Typography.bodyLarge)
+            AppCard (){
+                Text(rgbOriginal, style = Typography.titleMedium)
             }
-            AppCard (
-                size = CardSize.Small
-            ){
-                Text(rgbUser, style = Typography.bodyLarge)
+            AppCard (){
+                Text(rgbUser, style = Typography.titleMedium)
             }
         }
 
@@ -98,18 +94,17 @@ fun Result(
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
                     Text(
                         text = "$similarity%",
-                        style = Typography.displaySmall
+                        style = Typography.headlineLarge
                     )
                     Spacer(modifier = Modifier.height(24.dp))
                     Text(
                         text = resultText,
-                        style = Typography.bodyMedium
+                        style = Typography.bodyLarge
                     )
                     Spacer(modifier = Modifier.height(24.dp))
                     AppButton(
                         text = "Продолжить",
                         onClick = onRestart,
-                        size = ButtonSize.Small,
                     )
                 }
             }

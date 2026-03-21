@@ -56,7 +56,6 @@ fun ChooseColor(
                     onClick = {
                         onColorSelected(selectedColor)
                     },
-                    size = ButtonSize.Small
                 )
             }
         }

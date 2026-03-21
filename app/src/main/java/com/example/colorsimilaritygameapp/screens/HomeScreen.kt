@@ -1,5 +1,7 @@
 package com.example.colorsimilaritygameapp.screens
 
+import android.media.MediaPlayer
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -19,7 +21,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.example.colorsimilaritygameapp.Components.AppButton
-import com.example.colorsimilaritygameapp.Components.ButtonSize
 import com.example.colorsimilaritygameapp.R
 import com.example.colorsimilaritygameapp.ui.theme.PrimaryLight
 import com.example.colorsimilaritygameapp.ui.theme.Typography
@@ -43,7 +44,6 @@ fun HomeScreen(navController: NavHostController) {
                     navController.navigate("game")
                 },
                 modifier = Modifier.fillMaxWidth(),
-                size = ButtonSize.Default
             )
         }
     }
