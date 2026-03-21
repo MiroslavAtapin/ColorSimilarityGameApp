@@ -30,7 +30,7 @@ fun GameScreen() {
     var userColor by remember { mutableStateOf(Color.White) }
 
     LaunchedEffect(Unit) {
-        kotlinx.coroutines.delay(150)
+        delay(150)
         isTimerRunning = true
     }
 
