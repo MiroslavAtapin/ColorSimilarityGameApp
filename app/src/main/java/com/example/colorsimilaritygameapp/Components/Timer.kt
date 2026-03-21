@@ -17,11 +17,11 @@ import com.example.colorsimilaritygameapp.R
 import com.example.colorsimilaritygameapp.ui.theme.Typography
 import com.example.colorsimilaritygameapp.utils.getContrastColor
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 
 @Composable
 fun Timer(
     backgroundColor: Color,
+    isRunning: Boolean,
     totalTimeMillis: Long = 2_030L,
     onFinish: () -> Unit = {}
 ) {
@@ -35,22 +35,34 @@ fun Timer(
         }
     }
 
-    DisposableEffect(Unit) {
-        tickPlayer.start()
-        val job = kotlinx.coroutines.CoroutineScope(kotlinx.coroutines.Dispatchers.Main).launch {
-            val startTime = System.currentTimeMillis()
-            while (true) {
-                val elapsed = System.currentTimeMillis() - startTime
-                timeLeft = (totalTimeMillis - elapsed).coerceAtLeast(0)
-                if (timeLeft <= 0L) break
-                delay(16L)
+    LaunchedEffect(isRunning) {
+        if (isRunning) {
+            tickPlayer.start()
+        } else {
+            try {
+                fadeOutAndStop(tickPlayer)
+            } catch (_: IllegalStateException) {
             }
-            onFinish()
+        }
+    }
+
+    LaunchedEffect(isRunning) {
+        if (!isRunning) return@LaunchedEffect
+
+        val startTime = System.currentTimeMillis()
+
+        while (true) {
+            val elapsed = System.currentTimeMillis() - startTime
+            timeLeft = (totalTimeMillis - elapsed).coerceAtLeast(0)
+            if (timeLeft <= 0L) break
+            delay(16L)
         }
 
+        onFinish()
+    }
+
+    DisposableEffect(Unit) {
         onDispose {
-            job.cancel()
-            tickPlayer.stop()
             tickPlayer.release()
         }
     }
@@ -65,7 +77,9 @@ fun Timer(
         )
     )
 
-    val textColor = remember(backgroundColor) { getContrastColor(backgroundColor) }
+    val textColor = remember(backgroundColor) {
+        getContrastColor(backgroundColor)
+    }
 
     val seconds = timeLeft / 1000
     val hundredths = (timeLeft % 1000) / 10
@@ -83,4 +97,19 @@ fun Timer(
             modifier = Modifier.scale(scale)
         )
     }
+}
+
+private suspend fun fadeOutAndStop(player: MediaPlayer) {
+    val steps = 10
+    val delayPerStep = 20L
+
+    for (i in steps downTo 0) {
+        val volume = i / steps.toFloat()
+        player.setVolume(volume, volume)
+        delay(delayPerStep)
+    }
+
+    player.pause()
+    player.seekTo(0)
+    player.setVolume(1f, 1f)
 }

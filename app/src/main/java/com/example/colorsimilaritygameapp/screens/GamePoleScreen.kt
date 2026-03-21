@@ -8,14 +8,12 @@ import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import com.example.colorsimilaritygameapp.Components.ChooseColor
 import com.example.colorsimilaritygameapp.Components.Result
 import com.example.colorsimilaritygameapp.Components.Timer
-import com.example.colorsimilaritygameapp.ui.theme.Gray
 import com.example.colorsimilaritygameapp.utils.generateRandomColor
 import kotlinx.coroutines.delay
 
@@ -42,13 +40,14 @@ fun GameScreen() {
 
         AnimatedVisibility(
             visible = isTimerRunning,
-            enter = fadeIn(animationSpec = tween(500)) +
+            enter = fadeIn(tween(500)) +
                     slideInVertically(initialOffsetY = { -it }, animationSpec = tween(500)),
-            exit = fadeOut(animationSpec = tween(300)) +
+            exit = fadeOut(tween(300)) +
                     slideOutVertically(targetOffsetY = { -it }, animationSpec = tween(300))
         ) {
             Timer(
                 backgroundColor = backgroundColor,
+                isRunning = isTimerRunning,
                 onFinish = {
                     isTimerRunning = false
                     showColorPicker = true
@@ -58,9 +57,9 @@ fun GameScreen() {
 
         AnimatedVisibility(
             visible = showColorPicker,
-            enter = fadeIn(animationSpec = tween(500)) +
+            enter = fadeIn(tween(500)) +
                     slideInVertically(initialOffsetY = { it }, animationSpec = tween(500)),
-            exit = fadeOut(animationSpec = tween(300)) +
+            exit = fadeOut(tween(300)) +
                     slideOutVertically(targetOffsetY = { it }, animationSpec = tween(300))
         ) {
             ChooseColor(
